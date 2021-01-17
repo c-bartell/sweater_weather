@@ -21,6 +21,7 @@ gem 'rack-cors'
 
 group :development, :test do
   gem 'pry'
+  gem 'rspec-rails'
 end
 
 group :development do
