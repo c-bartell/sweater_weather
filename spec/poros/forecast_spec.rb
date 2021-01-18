@@ -23,6 +23,13 @@ describe 'Forecast' do
     expect(@forecast.hourly_weather.length).to eq(8)
   end
 
+  it 'can format datetime' do
+    seconds = 1610893087
+    formatted_time = @forecast.format_datetime(seconds)
+
+    expect(formatted_time).to eq(Time.at(seconds).to_s)
+  end
+
   it 'has correctly formatted current_weather' do
     current_weather = @forecast.current_weather
 
@@ -42,6 +49,7 @@ describe 'Forecast' do
     expect(current_weather).to_not have_key(:wind_gust)
     expect(current_weather).to_not have_key(:weather)
   end
+
   #test that daily_weather values are correctly formatted and do not include extraneous info
   #test that hourly_weather values are correctly formatted and do not include extraneous info
 end
