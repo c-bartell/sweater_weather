@@ -1,6 +1,5 @@
 class Forecast
-  attr_reader :daily_weather,
-              :hourly_weather
+  attr_reader :hourly_weather
 
   def initialize(data)
     @current_weather = data[:current]
@@ -23,7 +22,21 @@ class Forecast
     }
   end
 
+  def daily_weather
+    @daily_weather.map do |day|
+      {
+        date: Time.at(day[:dt]).getlocal.strftime('%Y-%m-%d'),
+        sunrise: format_datetime(day[:sunrise]),
+        sunset: format_datetime(day[:sunset]),
+        max_temp: day[:temp][:max],
+        min_temp: day[:temp][:min],
+        conditions: day[:weather][0][:description],
+        icon: day[:weather][0][:icon]
+      }
+    end
+  end
+
   def format_datetime(seconds)
-    Time.at(seconds).to_s
+    Time.at(seconds).getlocal.to_s
   end
 end
