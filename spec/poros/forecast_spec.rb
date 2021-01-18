@@ -28,7 +28,7 @@ describe 'Forecast' do
     seconds = 1610893087
     formatted_time = @forecast.format_datetime(seconds)
 
-    expect(formatted_time).to eq(Time.at(seconds).to_s)
+    expect(formatted_time).to eq(Time.at(seconds).getlocal.to_s)
   end
 
   it 'has correctly formatted current_weather' do
@@ -77,7 +77,7 @@ describe 'Forecast' do
     expect(daily_weather).to be_a Hash
     expect(daily_weather).to have_key :date
     expect(daily_weather[:date]).to eq(
-      Time.at(@data[:daily][1][:dt]).strftime("%Y-%m-%d")
+      Time.at(@data[:daily][1][:dt]).getlocal.strftime("%Y-%m-%d")
     )
     expect(daily_weather).to have_key :sunrise
     expect(daily_weather[:sunrise]).to eq(
