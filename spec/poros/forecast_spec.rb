@@ -34,15 +34,35 @@ describe 'Forecast' do
     current_weather = @forecast.current_weather
 
     expect(current_weather).to have_key(:datetime)
+    expect(current_weather[:datetime]).to eq(
+      @forecast.format_datetime(@data[:current][:dt])
+    )
     expect(current_weather).to have_key(:sunrise)
+    expect(current_weather[:sunrise]).to eq(
+      @forecast.format_datetime(@data[:current][:sunrise])
+    )
     expect(current_weather).to have_key(:sunset)
+    expect(current_weather[:sunset]).to eq(
+      @forecast.format_datetime(@data[:current][:sunset])
+    )
     expect(current_weather).to have_key(:temperature)
+    expect(current_weather[:temperature]).to eq(@data[:current][:temp])
     expect(current_weather).to have_key(:feels_like)
+    expect(current_weather[:feels_like]).to eq(@data[:current][:feels_like])
     expect(current_weather).to have_key(:humidity)
+    expect(current_weather[:humidity]).to eq(@data[:current][:humidity])
     expect(current_weather).to have_key(:uvi)
+    expect(current_weather[:uvi]).to eq(@data[:current][:uvi])
     expect(current_weather).to have_key(:visibility)
+    expect(current_weather[:uvi]).to eq(@data[:current][:uvi])
     expect(current_weather).to have_key(:conditions)
+    expect(current_weather[:conditions]).to eq(
+      @data[:current][:weather][0][:description]
+    )
     expect(current_weather).to have_key(:icon)
+    expect(current_weather[:icon]).to eq(
+      @data[:current][:weather][0][:icon]
+    )
     expect(current_weather).to_not have_key(:dew_point)
     expect(current_weather).to_not have_key(:clouds)
     expect(current_weather).to_not have_key(:wind_speed)
