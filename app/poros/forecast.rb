@@ -13,7 +13,7 @@ class Forecast
       datetime: format_datetime(@current_weather[:dt]),
       sunrise: format_datetime(@current_weather[:sunrise]),
       sunset: format_datetime(@current_weather[:sunset]),
-      temperature: @current_weather[:temperature],
+      temperature: @current_weather[:temp],
       feels_like: @current_weather[:feels_like],
       humidity: @current_weather[:humidity],
       uvi: @current_weather[:uvi],
