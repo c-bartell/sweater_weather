@@ -2,9 +2,9 @@ require 'rails_helper'
 
 describe 'WeatherService' do
   it 'can fetch weather data from geocoords' do
-    lattitude = 39.738453
+    latitude = 39.738453
     longitude = -104.984853
-    response = WeatherService.weather_at_coords(lattitude, longitude)
+    response = WeatherService.weather_at_coords(latitude, longitude)
 
     expect(response).to be_a Hash
     expect(response).to have_key :lat
