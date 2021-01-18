@@ -11,4 +11,16 @@ describe 'Forecast' do
   it 'exists' do
     expect(Forecast.new(@data)).to be_a Forecast
   end
+
+  it 'has attributes' do
+    forecast = Forecast.new(@data)
+
+    expect(forecast.current_weather).to be_a CurrentWeather
+    expect(forecast.daily_weather).to be_an Array
+    expect(forecast.daily_weather.length).to eq(5)
+    expect(forecast.daily_weather.first).to be_a DailyWeather
+    expect(forecast.hourly_weather).to be_an Array
+    expect(forecast.hourly_weather.length).to eq(8)
+    expect(forecast.hourly_weather.first).to be_an HourlyWeather
+  end
 end
