@@ -20,6 +20,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 gem 'rack-cors'
 
 gem 'faraday'
+gem 'figaro'
 
 group :development, :test do
   gem 'pry'
