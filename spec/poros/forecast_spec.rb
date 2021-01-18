@@ -15,6 +15,7 @@ describe 'Forecast' do
   before :each do
     @forecast = Forecast.new(@data)
   end
+
   it 'has attributes' do
     expect(@forecast.current_weather).to be_a Hash
     expect(@forecast.daily_weather).to be_an Array
@@ -70,6 +71,30 @@ describe 'Forecast' do
     expect(current_weather).to_not have_key(:weather)
   end
 
-  #test that daily_weather values are correctly formatted and do not include extraneous info
+  it 'has correctly formatted daily_weather' do
+    daily_weather = @forecast.daily_weather[0]
+
+    expect(daily_weather).to be_a Hash
+    expect(daily_weather).to have_key :date
+    expect(daily_weather[:date]).to eq(
+      Time.at(@data[:daily][1][:dt]).strftime("%Y-%m-%d")
+    )
+    expect(daily_weather).to have_key :sunrise
+    expect(daily_weather[:sunrise]).to eq(
+      Time.at(@data[:daily][1][:sunrise]).to_s
+    )
+    expect(daily_weather).to have_key :sunset
+    expect(daily_weather[:sunset]).to eq(
+      Time.at(@data[:daily][1][:sunset]).to_s
+    )
+    expect(daily_weather).to have_key :max_temp
+    expect(daily_weather[:max_temp]).to eq @data[:daily][1][:temp][:max]
+    expect(daily_weather).to have_key :min_temp
+    expect(daily_weather[:min_temp]).to eq @data[:daily][1][:temp][:min]
+    expect(daily_weather).to have_key :conditions
+    expect(daily_weather[:conditions]).to eq @data[:daily][1][:weather][0][:description]
+    expect(daily_weather).to have_key :icon
+    expect(daily_weather[:icon]).to eq @data[:daily][1][:weather][0][:icon]
+  end
   #test that hourly_weather values are correctly formatted and do not include extraneous info
 end
