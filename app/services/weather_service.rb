@@ -1,9 +1,9 @@
 class WeatherService
   class << self
-    def weather_at_coords(latitude, longitude)
+    def weather_at_coords(location)
       response = conn.get('onecall') do |req|
-        req.params[:lat] = latitude
-        req.params[:lon] = longitude
+        req.params[:lat] = location.latitude
+        req.params[:lon] = location.longitude
       end
 
       JSON.parse(response.body, symbolize_names: true)
