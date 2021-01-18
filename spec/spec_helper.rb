@@ -16,6 +16,7 @@
 
 require 'simplecov'
 SimpleCov.start
+SimpleCov.add_filter ['spec']
 
 require 'factory_bot_rails'
 
