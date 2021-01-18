@@ -161,7 +161,7 @@ describe 'WeatherService' do
       expect(day).to have_key :clouds
       expect(day[:clouds]).to be_an Integer
       expect(day).to have_key :pop
-      expect(day[:pop]).to be_a Float
+      expect(day[:pop]).to be_a Numeric
       expect(day).to have_key :uvi
       expect(day[:uvi]).to be_a Numeric
     end
