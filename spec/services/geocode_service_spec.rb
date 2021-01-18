@@ -32,7 +32,7 @@ describe 'GeocodeService' do
 
     location_results = results.first
 
-    expect(location_results).to be a Hash
+    expect(location_results).to be_a Hash
     expect(location_results).to have_key :providedLocation
     expect(location_results[:providedLocation]).to be_a Hash
 
@@ -40,23 +40,23 @@ describe 'GeocodeService' do
     expect(location_results[:providedLocation][:street]).to be_a String
     expect(location_results[:providedLocation][:street]).to eq(location)
 
-    expect(location_results[:providedLocation]).to have_key :locations
-    expect(location_results[:providedLocation][:locations]).to be_an Array
-    expect(location_results[:providedLocation][:locations]).to_not be_empty
+    expect(location_results).to have_key :locations
+    expect(location_results[:locations]).to be_an Array
+    expect(location_results[:locations]).to_not be_empty
 
-    location_data = location_results[:providedLocation][:locations].first
+    location_data = location_results[:locations].first
 
     expect(location_data).to be_a Hash
     expect(location_data).to have_key :latLng
 
-    geocoodes = location_data[:latLng]
+    geocoords = location_data[:latLng]
 
-    expect(geocodes).to be_a Hash
-    expect(geocoodes).to have_key :lat
-    expect(geocoodes[:lat]).to be_a Float
-    expect(geocoodes[:lat]).to eq(39.738453)
-    expect(geocoodes).to have_key :lng
-    expect(geocoodes[:lng]).to be_a Float
-    expect(geocoodes[:lng]).to eq(-104.984853)
+    expect(geocoords).to be_a Hash
+    expect(geocoords).to have_key :lat
+    expect(geocoords[:lat]).to be_a Float
+    expect(geocoords[:lat]).to eq(39.738453)
+    expect(geocoords).to have_key :lng
+    expect(geocoords[:lng]).to be_a Float
+    expect(geocoords[:lng]).to eq(-104.984853)
   end
 end
