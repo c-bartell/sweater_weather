@@ -3,21 +3,7 @@ require 'rails_helper'
 describe 'WeatherService' do
   it 'can fetch weather data from geocoords' do
     VCR.use_cassette('denverco_weather_request') do
-      data = {
-        results: [
-          {
-            locations: [
-              {
-                latLng: {
-                  lat: 39.738453,
-                  lng: -104.984853
-                }
-              }
-            ]
-          }
-        ]
-      }
-      location = Location.new(data)
+      location = instance_double('Location', latitude: 39.738453, longitude: -104.984853)
       response = WeatherService.weather_at_coords(location)
 
       expect(response).to be_a Hash
