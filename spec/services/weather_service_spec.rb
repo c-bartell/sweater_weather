@@ -39,15 +39,15 @@ describe 'WeatherService' do
       expect(current).to have_key :pressure
       expect(current[:pressure]).to be_an Integer
       expect(current).to have_key :humidity
-      expect(current[:humidity]).to be_an Integer
+      expect(current[:humidity]).to be_a Numeric
       expect(current).to have_key :dew_point
       expect(current[:dew_point]).to be_a Float
       expect(current).to have_key :uvi
-      expect(current[:uvi]).to be_a Float
+      expect(current[:uvi]).to be_a Numeric
       expect(current).to have_key :clouds
       expect(current[:clouds]).to be_an Integer
       expect(current).to have_key :visibility
-      expect(current[:visibility]).to be_an Integer
+      expect(current[:visibility]).to be_a Numeric
       expect(current).to have_key :wind_speed
       expect(current[:wind_speed]).to be_a Float
       expect(current).to have_key :wind_deg
@@ -79,15 +79,15 @@ describe 'WeatherService' do
       expect(hour).to have_key :pressure
       expect(hour[:pressure]).to be_an Integer
       expect(hour).to have_key :humidity
-      expect(hour[:humidity]).to be_an Integer
+      expect(hour[:humidity]).to be_a Numeric
       expect(hour).to have_key :dew_point
       expect(hour[:dew_point]).to be_a Float
       expect(hour).to have_key :uvi
-      expect(hour[:uvi]).to be_a Float
+      expect(hour[:uvi]).to be_a Numeric
       expect(hour).to have_key :clouds
       expect(hour[:clouds]).to be_an Integer
       expect(hour).to have_key :visibility
-      expect(hour[:visibility]).to be_an Integer
+      expect(hour[:visibility]).to be_a Numeric
       expect(hour).to have_key :wind_speed
       expect(hour[:wind_speed]).to be_a Float
       expect(hour).to have_key :wind_deg
@@ -102,7 +102,7 @@ describe 'WeatherService' do
       expect(hour[:weather].first).to have_key :icon
       expect(hour[:weather].first[:icon]).to be_a String
       expect(hour).to have_key :pop
-      expect(hour[:pop]).to be_an Integer
+      expect(hour[:pop]).to be_a Numeric
 
       expect(daily).to be_an Array
 
@@ -142,7 +142,7 @@ describe 'WeatherService' do
       expect(day).to have_key :pressure
       expect(day[:pressure]).to be_an Integer
       expect(day).to have_key :humidity
-      expect(day[:humidity]).to be_an Integer
+      expect(day[:humidity]).to be_a Numeric
       expect(day).to have_key :dew_point
       expect(day[:dew_point]).to be_a Float
       expect(day).to have_key :wind_speed
@@ -163,7 +163,7 @@ describe 'WeatherService' do
       expect(day).to have_key :pop
       expect(day[:pop]).to be_a Float
       expect(day).to have_key :uvi
-      expect(day[:uvi]).to be_a Float
+      expect(day[:uvi]).to be_a Numeric
     end
   end
 end
