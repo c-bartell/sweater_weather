@@ -95,6 +95,22 @@ describe 'Forecast' do
     expect(daily_weather[:conditions]).to eq @data[:daily][1][:weather][0][:description]
     expect(daily_weather).to have_key :icon
     expect(daily_weather[:icon]).to eq @data[:daily][1][:weather][0][:icon]
+    expect(daily_weather).to_not have_key :temp
+    expect(daily_weather).to_not have_key :pressure
+    expect(daily_weather).to_not have_key :humidity
+    expect(daily_weather).to_not have_key :dew_point
+    expect(daily_weather).to_not have_key :wind_speed
+    expect(daily_weather).to_not have_key :wind_deg
+    expect(daily_weather).to_not have_key :weather
+    expect(daily_weather).to_not have_key :clouds
+    expect(daily_weather).to_not have_key :pop
+    expect(daily_weather).to_not have_key :uvi
   end
-  #test that hourly_weather values are correctly formatted and do not include extraneous info
+
+  it 'has correctly formatted hourly_weather' do
+    hourly_weather = @forecast.hourly_weather[0]
+
+    expect(hourly_weather).to be_a Hash
+    # expect()
+  end
 end
