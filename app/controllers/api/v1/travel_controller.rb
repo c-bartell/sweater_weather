@@ -35,10 +35,28 @@ class Api::V1::TravelController < ApplicationController
     end
 
     forecast = {
-      summary: arrival_forecast_data[:conditions],
+      summary: arrival_forecast_data[:conditions].capitalize,
       temperature: arrival_forecast_data[:temperature].to_i.to_s
     }
 
+    conn = Faraday.new(
+      url: 'https://api.yelp.com/v3/',
+      headers: {
+        'Authorization' => "Bearer #{ENV['YELP_API_KEY']}"
+      }
+    )
+
+    response = conn.get('businesses/search') do |req|
+      req.params[:limit] = 1
+      req.params[:categories] = 'food'
+      req.params[:term] = params[:food]
+      req.params[:latitude] = destination_obj.latitude
+      req.params[:longitude] = destination_obj.longitude
+    end
+
+    restaurant_data = JSON.parse(response.body, symbolize_names: true)[:businesses].first
+    restaurant_name = restaurant_data[:name]
+    restaurant_address = restaurant_data[:location][:display_address].join(', ')
     response_hash = {
       data: {
         id: nil,
@@ -47,11 +65,14 @@ class Api::V1::TravelController < ApplicationController
           destination_city: destination_city,
           travel_time: trip_time,
           forecast: forecast,
-          restaurant: ''
+          restaurant: {
+            name: restaurant_name,
+            address: restaurant_address
+          }
         }
       }
     }
-    binding.pry
+
     render json: response_hash
   end
 end

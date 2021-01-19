@@ -1,0 +1,78 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.yelp.com/v3/businesses/search?categories=food&latitude=38.265427&limit=1&longitude=-104.610413&term=chinese
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <YELP_API_KEY>
+      User-Agent:
+      - Faraday v1.3.0
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Connection:
+      - keep-alive
+      Content-Type:
+      - application/json
+      Ratelimit-Dailylimit:
+      - '5000'
+      Ratelimit-Remaining:
+      - '4997'
+      X-Zipkin-Id:
+      - 5cb93f71c1ba2611
+      Server:
+      - envoy
+      Ratelimit-Resettime:
+      - '2021-01-20T00:00:00+00:00'
+      X-Routing-Service:
+      - routing-main--uswest2-5b584d59bc-kxh6p; site=public_api_v3
+      X-B3-Sampled:
+      - '0'
+      X-Proxied:
+      - 10-69-90-30-uswest2aprod
+      X-Extlb:
+      - 10-69-90-30-uswest2aprod
+      Cache-Control:
+      - max-age=0, must-revalidate, no-cache, no-store, private, no-transform
+      Accept-Ranges:
+      - bytes
+      Date:
+      - Tue, 19 Jan 2021 18:13:32 GMT
+      Via:
+      - 1.1 varnish
+      X-Served-By:
+      - cache-den8263-DEN
+      X-Cache:
+      - MISS
+      X-Cache-Hits:
+      - '0'
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"businesses": [{"id": "3MONRi6Bh5gO1s_4nCaMYQ", "alias": "noodles-and-company-pueblo",
+        "name": "Noodles & Company", "image_url": "https://s3-media2.fl.yelpcdn.com/bphoto/BX4n89hTu90OSoEDWF_mxA/o.jpg",
+        "is_closed": false, "url": "https://www.yelp.com/biz/noodles-and-company-pueblo?adjust_creative=TnKtG_i88kUfPls7Nh__BA&utm_campaign=yelp_api_v3&utm_medium=api_v3_business_search&utm_source=TnKtG_i88kUfPls7Nh__BA",
+        "review_count": 33, "categories": [{"alias": "noodles", "title": "Noodles"},
+        {"alias": "salad", "title": "Salad"}, {"alias": "pastashops", "title": "Pasta
+        Shops"}], "rating": 3.5, "coordinates": {"latitude": 38.3085380973858, "longitude":
+        -104.61941242218}, "transactions": [], "price": "$", "location": {"address1":
+        "825 W US Hwy 50", "address2": "", "address3": "", "city": "Pueblo", "zip_code":
+        "81008", "country": "US", "state": "CO", "display_address": ["825 W US Hwy
+        50", "Pueblo, CO 81008"]}, "phone": "+17195441539", "display_phone": "(719)
+        544-1539", "distance": 4857.652866895275}], "total": 1, "region": {"center":
+        {"longitude": -104.610413, "latitude": 38.265427}}}'
+  recorded_at: Tue, 19 Jan 2021 18:13:32 GMT
+recorded_with: VCR 6.0.0
