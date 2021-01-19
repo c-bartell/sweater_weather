@@ -10,7 +10,7 @@ describe 'Munchies request' do
       "Accept" => 'application/json'
     }
 
-    get api_v1_munchies_path(start: start_point, end: end_point, food: food)
+    get api_v1_munchies_path(start: start_point, end: end_point, food: food), headers: headers
 
     expect(response).to be_successful
 
