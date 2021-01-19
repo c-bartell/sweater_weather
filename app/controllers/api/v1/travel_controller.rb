@@ -24,7 +24,34 @@ class Api::V1::TravelController < ApplicationController
     destination_city = "#{destination_hash[:adminArea5]}, #{destination_hash[:adminArea3]}"
     destination_lat_lng = destination_hash[:displayLatLng]
     destination_obj = Location.new(destination_lat_lng)
-    binding.pry
 
+    destination_forecast = Forecast.new(
+      WeatherService.weather_at_coords(destination_obj)
+    )
+    current_hour = destination_forecast.current_weather[:datetime][11..12].to_i
+    arrival_hour = raw_time[0].to_i + current_hour
+    arrival_forecast_data = destination_forecast.hourly_weather.find do |hour|
+      hour[:time].split(':')[0].to_i == arrival_hour
+    end
+
+    forecast = {
+      summary: arrival_forecast_data[:conditions],
+      temperature: arrival_forecast_data[:temperature].to_i.to_s
+    }
+
+    response_hash = {
+      data: {
+        id: nil,
+        type: 'munchie',
+        attributes: {
+          destination_city: destination_city,
+          travel_time: trip_time,
+          forecast: forecast,
+          restaurant: ''
+        }
+      }
+    }
+    binding.pry
+    render json: response_hash
   end
 end
