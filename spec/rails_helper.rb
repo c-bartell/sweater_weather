@@ -75,7 +75,7 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   c.filter_sensitive_data('<GEOCODE_API_KEY>') { ENV['GEOCODE_API_KEY'] }
   c.filter_sensitive_data('<WEATHER_API_KEY>') { ENV['WEATHER_API_KEY'] }
-  c.filter_sensitive_data('<WEATHER_API_KEY>') { ENV['UNSPLASH_KEY'] }
-  c.filter_sensitive_data('<WEATHER_API_KEY>') { ENV['UNSPLASH_SECRET'] }
+  c.filter_sensitive_data('<IMAGE_API_KEY>') { ENV['UNSPLASH_KEY'] }
+  c.filter_sensitive_data('<IMAGE_SECRET>') { ENV['UNSPLASH_SECRET'] }
   c.default_cassette_options = { record: :new_episodes }
 end
