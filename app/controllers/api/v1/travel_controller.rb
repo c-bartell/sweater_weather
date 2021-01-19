@@ -12,10 +12,15 @@ class Api::V1::TravelController < ApplicationController
         'Accept' => 'application/json'
       }
     )
-    trip = conn.get('route') do |req|
+    response = conn.get('route') do |req|
       req.params[:from] = params[:start]
       req.params[:to] = params[:end]
     end
+
+    trip_data = JSON.parse(response.body, symbolize_names: true)
+    raw_time = trip_data[:route][:formattedTime].split(':')
+    trip_time = "#{raw_time[0].to_i} hours #{raw_time[1]} min"
+    
     binding.pry
   end
 end
