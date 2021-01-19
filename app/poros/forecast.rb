@@ -39,4 +39,23 @@ class Forecast
   def format_datetime(seconds)
     Time.at(seconds).getlocal.to_s
   end
+
+  def cardinal_direction(deg)
+    directions = {
+      (0..22) => 'N',
+      (23..67) => 'NE',
+      (68..112) => 'E',
+      (113..157) => 'SE',
+      (158..202) => 'S',
+      (203..247) => 'SW',
+      (248..292) => 'W',
+      (293..337) => 'NW',
+      (338..359) => 'N'
+    }
+    key = directions.keys.find do |direction|
+      direction.cover?(deg)
+    end
+
+    directions[key]
+  end
 end
