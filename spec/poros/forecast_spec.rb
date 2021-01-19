@@ -122,7 +122,9 @@ describe 'Forecast' do
     expect(daily_weather).to have_key :min_temp
     expect(daily_weather[:min_temp]).to eq @data[:daily][1][:temp][:min]
     expect(daily_weather).to have_key :conditions
-    expect(daily_weather[:conditions]).to eq @data[:daily][1][:weather][0][:description]
+    expect(daily_weather[:conditions]).to eq(
+      @data[:daily][1][:weather][0][:description]
+    )
     expect(daily_weather).to have_key :icon
     expect(daily_weather[:icon]).to eq @data[:daily][1][:weather][0][:icon]
     expect(daily_weather).to_not have_key :temp
@@ -137,9 +139,9 @@ describe 'Forecast' do
     expect(daily_weather).to_not have_key :uvi
   end
 
-  xit 'has correctly formatted hourly_weather' do
+  it 'has correctly formatted hourly_weather' do
     hourly_weather = @forecast.hourly_weather[0]
-    binding.pry
+
     expect(hourly_weather).to be_a Hash
     expect(hourly_weather).to have_key :time
     expect(hourly_weather[:time]).to eq(
@@ -151,6 +153,25 @@ describe 'Forecast' do
     expect(hourly_weather[:wind_speed]).to eq(
       @data[:hourly][1][:wind_speed].to_s + " mph"
     )
-    expect()
+    expect(hourly_weather).to have_key :wind_direction
+    expect(hourly_weather[:wind_direction]).to eq(
+      'from ' + @forecast.cardinal_direction(@data[:hourly][1][:wind_deg])
+    )
+    expect(hourly_weather).to have_key :conditions
+    expect(hourly_weather[:conditions]).to eq(
+      @data[:hourly][1][:weather][0][:description]
+    )
+    expect(hourly_weather).to have_key :icon
+    expect(hourly_weather[:icon]).to eq(
+      @data[:hourly][1][:weather][0][:icon]
+    )
+    expect(hourly_weather).to_not have_key(:pressure)
+    expect(hourly_weather).to_not have_key(:humidity)
+    expect(hourly_weather).to_not have_key(:dew_point)
+    expect(hourly_weather).to_not have_key(:uvi)
+    expect(hourly_weather).to_not have_key(:clouds)
+    expect(hourly_weather).to_not have_key(:visibility)
+    expect(hourly_weather).to_not have_key(:weather)
+    expect(hourly_weather).to_not have_key(:pop)
   end
 end
