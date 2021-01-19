@@ -16,6 +16,25 @@ class Api::V1::ImagesController < ApplicationController
     end
 
     background_data = JSON.parse(response.body, symbolize_names: true)
+
+    payload = {
+      data: {
+        id: nil,
+        type: 'image',
+        attributes: {
+          image: {
+            location: nil,
+            image_url: nil,
+            credit: {
+              source: nil,
+              author: nil,
+              logo: nil
+            }
+          }
+        }
+      }
+    }
     binding.pry
+    render json: payload
   end
 end
