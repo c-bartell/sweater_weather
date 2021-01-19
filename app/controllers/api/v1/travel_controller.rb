@@ -17,10 +17,11 @@ class Api::V1::TravelController < ApplicationController
       req.params[:to] = params[:end]
     end
 
-    trip_data = JSON.parse(response.body, symbolize_names: true)
-    raw_time = trip_data[:route][:formattedTime].split(':')
+    trip_data = JSON.parse(response.body, symbolize_names: true)[:route]
+    raw_time = trip_data[:formattedTime].split(':')
     trip_time = "#{raw_time[0].to_i} hours #{raw_time[1]} min"
-    
+    destination_hash = trip_data[:locations].last
+    destination_city = "#{destination_hash[:adminArea5]}, #{destination_hash[:adminArea3]}"
     binding.pry
   end
 end
