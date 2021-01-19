@@ -75,5 +75,6 @@ VCR.configure do |c|
   c.cassette_library_dir = 'spec/fixtures/vcr_cassettes'
   c.filter_sensitive_data('<GEOCODE_API_KEY>') { ENV['GEOCODE_API_KEY'] }
   c.filter_sensitive_data('<WEATHER_API_KEY>') { ENV['WEATHER_API_KEY'] }
+  c.filter_sensitive_data('<YELP_API_KEY>') { ENV['YELP_API_KEY'] }
   c.default_cassette_options = { record: :new_episodes }
 end
