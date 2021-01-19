@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe 'Forecast Request' do
-  it 'can return forcast information for a location string' do
+  it 'can return forecast information for a location string' do
     VCR.use_cassette('denverco_weather_request') do
       VCR.use_cassette('denverco_coord_request') do
         location = 'denver,co'
@@ -18,7 +18,7 @@ describe 'Forecast Request' do
         expect(forecast_response).to be_a Hash
         expect(forecast_response).to have_key :data
 
-        data = forcast_response[:data]
+        data = forecast_response[:data]
 
         expect(data[:id]).to be nil
         expect(data[:type]).to eq('forecast')
