@@ -1,6 +1,4 @@
 class Forecast
-  attr_reader :hourly_weather
-
   def initialize(data)
     @current_weather = data[:current]
     @daily_weather = data[:daily][1..5]
@@ -32,6 +30,19 @@ class Forecast
         min_temp: day[:temp][:min],
         conditions: day[:weather][0][:description],
         icon: day[:weather][0][:icon]
+      }
+    end
+  end
+
+  def hourly_weather
+    @hourly_weather.map do |hour|
+      {
+        time: Time.at(hour[:dt]).getlocal.strftime('%H:%M:%S'),
+        temperature: hour[:temp],
+        wind_speed: (hour[:wind_speed].to_s + ' mph'),
+        wind_direction: ('from ' + cardinal_direction(hour[:wind_deg])),
+        conditions: hour[:weather][0][:description],
+        icon: hour[:weather][0][:icon]
       }
     end
   end
