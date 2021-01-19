@@ -31,6 +31,10 @@ describe 'Forecast' do
     expect(formatted_time).to eq(Time.at(seconds).getlocal.to_s)
   end
 
+  it 'can get compass direction from angle' do
+
+  end
+
   it 'has correctly formatted current_weather' do
     current_weather = @forecast.current_weather
 
@@ -107,10 +111,20 @@ describe 'Forecast' do
     expect(daily_weather).to_not have_key :uvi
   end
 
-  it 'has correctly formatted hourly_weather' do
+  xit 'has correctly formatted hourly_weather' do
     hourly_weather = @forecast.hourly_weather[0]
-
+    binding.pry
     expect(hourly_weather).to be_a Hash
-    # expect()
+    expect(hourly_weather).to have_key :time
+    expect(hourly_weather[:time]).to eq(
+      Time.at(@data[:hourly][1][:dt]).getlocal.strftime("%H:%M:%S")
+    )
+    expect(hourly_weather).to have_key :temperature
+    expect(hourly_weather[:temperature]).to eq @data[:hourly][1][:temp]
+    expect(hourly_weather).to have_key :wind_speed
+    expect(hourly_weather[:wind_speed]).to eq(
+      @data[:hourly][1][:wind_speed].to_s + " mph"
+    )
+    expect()
   end
 end
