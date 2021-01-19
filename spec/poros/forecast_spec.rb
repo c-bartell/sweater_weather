@@ -85,7 +85,7 @@ describe 'Forecast' do
     expect(current_weather).to have_key(:uvi)
     expect(current_weather[:uvi]).to eq(@data[:current][:uvi])
     expect(current_weather).to have_key(:visibility)
-    expect(current_weather[:uvi]).to eq(@data[:current][:uvi])
+    expect(current_weather[:visibility]).to eq(@data[:current][:visibility])
     expect(current_weather).to have_key(:conditions)
     expect(current_weather[:conditions]).to eq(
       @data[:current][:weather][0][:description]
