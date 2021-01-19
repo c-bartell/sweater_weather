@@ -3,7 +3,12 @@ class Location
               :longitude
 
   def initialize(data)
-    @latitude = data[:results][0][:locations][0][:latLng][:lat]
-    @longitude = data[:results][0][:locations][0][:latLng][:lng]
+    if data[:results]
+      @latitude = data[:results][0][:locations][0][:latLng][:lat]
+      @longitude = data[:results][0][:locations][0][:latLng][:lng]
+    else
+      @latitude = data[:lat]
+      @longitude = data[:lng]
+    end
   end
 end

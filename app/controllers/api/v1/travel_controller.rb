@@ -22,6 +22,9 @@ class Api::V1::TravelController < ApplicationController
     trip_time = "#{raw_time[0].to_i} hours #{raw_time[1]} min"
     destination_hash = trip_data[:locations].last
     destination_city = "#{destination_hash[:adminArea5]}, #{destination_hash[:adminArea3]}"
+    destination_lat_lng = destination_hash[:displayLatLng]
+    destination_obj = Location.new(destination_lat_lng)
     binding.pry
+
   end
 end
