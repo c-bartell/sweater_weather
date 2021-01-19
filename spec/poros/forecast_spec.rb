@@ -31,8 +31,34 @@ describe 'Forecast' do
     expect(formatted_time).to eq(Time.at(seconds).getlocal.to_s)
   end
 
-  it 'can get compass direction from angle' do
-
+  it 'can get compass direction from an angle' do
+    expect(@forecast.cardinal_direction(0)).to eq 'N'
+    expect(@forecast.cardinal_direction(11)).to eq 'N'
+    expect(@forecast.cardinal_direction(22)).to eq 'N'
+    expect(@forecast.cardinal_direction(23)).to eq 'NE'
+    expect(@forecast.cardinal_direction(34)).to eq 'NE'
+    expect(@forecast.cardinal_direction(67)).to eq 'NE'
+    expect(@forecast.cardinal_direction(68)).to eq 'E'
+    expect(@forecast.cardinal_direction(79)).to eq 'E'
+    expect(@forecast.cardinal_direction(112)).to eq 'E'
+    expect(@forecast.cardinal_direction(113)).to eq 'SE'
+    expect(@forecast.cardinal_direction(124)).to eq 'SE'
+    expect(@forecast.cardinal_direction(157)).to eq 'SE'
+    expect(@forecast.cardinal_direction(158)).to eq 'S'
+    expect(@forecast.cardinal_direction(169)).to eq 'S'
+    expect(@forecast.cardinal_direction(202)).to eq 'S'
+    expect(@forecast.cardinal_direction(203)).to eq 'SW'
+    expect(@forecast.cardinal_direction(214)).to eq 'SW'
+    expect(@forecast.cardinal_direction(247)).to eq 'SW'
+    expect(@forecast.cardinal_direction(248)).to eq 'W'
+    expect(@forecast.cardinal_direction(259)).to eq 'W'
+    expect(@forecast.cardinal_direction(292)).to eq 'W'
+    expect(@forecast.cardinal_direction(293)).to eq 'NW'
+    expect(@forecast.cardinal_direction(304)).to eq 'NW'
+    expect(@forecast.cardinal_direction(337)).to eq 'NW'
+    expect(@forecast.cardinal_direction(338)).to eq 'N'
+    expect(@forecast.cardinal_direction(349)).to eq 'N'
+    expect(@forecast.cardinal_direction(359)).to eq 'N'
   end
 
   it 'has correctly formatted current_weather' do
