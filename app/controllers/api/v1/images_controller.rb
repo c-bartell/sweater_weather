@@ -11,8 +11,8 @@ class Api::V1::ImagesController < ApplicationController
     )
 
     response = conn.get('photos/random') do |req|
-      req.params[:content_filter]
-      req.params[:query]
+      req.params[:content_filter] = 'high'
+      req.params[:query] = params[:location]
     end
 
     background_data = JSON.parse(response.body, symbolize_names: true)
@@ -23,18 +23,19 @@ class Api::V1::ImagesController < ApplicationController
         type: 'image',
         attributes: {
           image: {
-            location: nil,
-            image_url: nil,
+            location: background_data[:location][:title],
+            image_url: background_data[:urls][:full],
+            alt_description: background_data[:alt_description],
             credit: {
-              source: nil,
-              author: nil,
-              logo: nil
+              source: 'unsplash.com',
+              author: background_data[:user][:username],
+              author_page: background_data[:user][:links][:html]
             }
           }
         }
       }
     }
-    binding.pry
+    # binding.pry
     render json: payload
   end
 end

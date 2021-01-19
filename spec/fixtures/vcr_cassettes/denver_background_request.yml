@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.unsplash.com/photos/random
+    uri: https://api.unsplash.com/photos/random?content_filter=high&query=denver,co
     body:
       encoding: US-ASCII
       string: ''
@@ -27,7 +27,7 @@ http_interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '1002'
+      - '1103'
       Server:
       - Cowboy
       Access-Control-Allow-Origin:
@@ -45,11 +45,11 @@ http_interactions:
       X-Ratelimit-Limit:
       - '50'
       X-Ratelimit-Remaining:
-      - '49'
+      - '47'
       X-Request-Id:
-      - cef75b3c-88c4-4cfd-990f-3fd8efce2ab3
+      - 961f01f1-afb8-433e-8d86-8208e87ef35e
       X-Runtime:
-      - '0.050899'
+      - '0.086269'
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       Via:
@@ -57,24 +57,28 @@ http_interactions:
       Accept-Ranges:
       - bytes
       Date:
-      - Tue, 19 Jan 2021 22:17:32 GMT
+      - Tue, 19 Jan 2021 22:44:12 GMT
       Age:
       - '0'
       X-Served-By:
-      - cache-dca17747-DCA, cache-den8273-DEN
+      - cache-dca17760-DCA, cache-den8229-DEN
       X-Cache:
       - MISS, MISS
       X-Cache-Hits:
       - 0, 0
       X-Timer:
-      - S1611094653.693230,VS0,VE98
+      - S1611096253.797937,VS0,VE136
       Vary:
       - Accept-Encoding, Origin,Authorization
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"4r5p0CloTmk","created_at":"2021-01-09T07:26:01-05:00","updated_at":"2021-01-18T18:17:23-05:00","promoted_at":"2021-01-09T11:06:01-05:00","width":4000,"height":6000,"color":"#f3f3f3","blur_hash":"L=L;8CkCR*WB_4oLjtaxkXWBayfR","description":null,"alt_description":"brown
-        and white short coated dog on brown grass field during daytime","urls":{"raw":"https://images.unsplash.com/photo-1610194982674-1fc2931d90c9?ixid=MXwxOTk4MjV8MHwxfHJhbmRvbXx8fHx8fHx8\u0026ixlib=rb-1.2.1","full":"https://images.unsplash.com/photo-1610194982674-1fc2931d90c9?crop=entropy\u0026cs=srgb\u0026fm=jpg\u0026ixid=MXwxOTk4MjV8MHwxfHJhbmRvbXx8fHx8fHx8\u0026ixlib=rb-1.2.1\u0026q=85","regular":"https://images.unsplash.com/photo-1610194982674-1fc2931d90c9?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=MXwxOTk4MjV8MHwxfHJhbmRvbXx8fHx8fHx8\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=1080","small":"https://images.unsplash.com/photo-1610194982674-1fc2931d90c9?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=MXwxOTk4MjV8MHwxfHJhbmRvbXx8fHx8fHx8\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=400","thumb":"https://images.unsplash.com/photo-1610194982674-1fc2931d90c9?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=MXwxOTk4MjV8MHwxfHJhbmRvbXx8fHx8fHx8\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=200"},"links":{"self":"https://api.unsplash.com/photos/4r5p0CloTmk","html":"https://unsplash.com/photos/4r5p0CloTmk","download":"https://unsplash.com/photos/4r5p0CloTmk/download","download_location":"https://api.unsplash.com/photos/4r5p0CloTmk/download"},"categories":[],"likes":31,"liked_by_user":false,"current_user_collections":[],"sponsorship":null,"user":{"id":"eC8q22VCLm0","updated_at":"2021-01-18T11:59:44-05:00","username":"onmywayhome","name":"Anthony
-        Ievlev","first_name":"Anthony","last_name":"Ievlev","twitter_username":null,"portfolio_url":null,"bio":"Simplicity
-        of existence","location":null,"links":{"self":"https://api.unsplash.com/users/onmywayhome","html":"https://unsplash.com/@onmywayhome","photos":"https://api.unsplash.com/users/onmywayhome/photos","likes":"https://api.unsplash.com/users/onmywayhome/likes","portfolio":"https://api.unsplash.com/users/onmywayhome/portfolio","following":"https://api.unsplash.com/users/onmywayhome/following","followers":"https://api.unsplash.com/users/onmywayhome/followers"},"profile_image":{"small":"https://images.unsplash.com/profile-1589474856846-993e9411c5edimage?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=32\u0026w=32","medium":"https://images.unsplash.com/profile-1589474856846-993e9411c5edimage?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=64\u0026w=64","large":"https://images.unsplash.com/profile-1589474856846-993e9411c5edimage?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=128\u0026w=128"},"instagram_username":"onmyway.home","total_collections":5,"total_likes":100,"total_photos":97,"accepted_tos":true},"exif":{"make":"SONY","model":"ILCE-7","exposure_time":"1/1000","aperture":null,"focal_length":null,"iso":200},"location":{"title":null,"name":null,"city":null,"country":null,"position":{"latitude":null,"longitude":null}},"views":110106,"downloads":740}'
-  recorded_at: Tue, 19 Jan 2021 22:17:32 GMT
+      string: '{"id":"tVvmoERH86g","created_at":"2021-01-11T19:31:10-05:00","updated_at":"2021-01-19T15:24:36-05:00","promoted_at":null,"width":3712,"height":5568,"color":"#738ca6","blur_hash":"LSEfsURjRjkC_NRjWBfQE-WCn$WB","description":"INSTAGRAM:
+        SARRAMPHOTOGRAPHY","alt_description":"man in black and white hoodie standing
+        on top of building during daytime","urls":{"raw":"https://images.unsplash.com/photo-1610411084570-b129513aa56e?ixid=MXwxOTk4MjV8MHwxfHJhbmRvbXx8fHx8fHx8\u0026ixlib=rb-1.2.1","full":"https://images.unsplash.com/photo-1610411084570-b129513aa56e?crop=entropy\u0026cs=srgb\u0026fm=jpg\u0026ixid=MXwxOTk4MjV8MHwxfHJhbmRvbXx8fHx8fHx8\u0026ixlib=rb-1.2.1\u0026q=85","regular":"https://images.unsplash.com/photo-1610411084570-b129513aa56e?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=MXwxOTk4MjV8MHwxfHJhbmRvbXx8fHx8fHx8\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=1080","small":"https://images.unsplash.com/photo-1610411084570-b129513aa56e?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=MXwxOTk4MjV8MHwxfHJhbmRvbXx8fHx8fHx8\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=400","thumb":"https://images.unsplash.com/photo-1610411084570-b129513aa56e?crop=entropy\u0026cs=tinysrgb\u0026fit=max\u0026fm=jpg\u0026ixid=MXwxOTk4MjV8MHwxfHJhbmRvbXx8fHx8fHx8\u0026ixlib=rb-1.2.1\u0026q=80\u0026w=200"},"links":{"self":"https://api.unsplash.com/photos/tVvmoERH86g","html":"https://unsplash.com/photos/tVvmoERH86g","download":"https://unsplash.com/photos/tVvmoERH86g/download","download_location":"https://api.unsplash.com/photos/tVvmoERH86g/download"},"categories":[],"likes":0,"liked_by_user":false,"current_user_collections":[],"sponsorship":null,"user":{"id":"7vaZ99fSB5o","updated_at":"2021-01-19T15:57:12-05:00","username":"nima_sarram","name":"Nima
+        Sarram","first_name":"Nima","last_name":"Sarram","twitter_username":null,"portfolio_url":null,"bio":"INSTAGRAM:
+        SARRAMPHOTOGRAPHY\r\nBased out of Denver Colorado, 17 years old.","location":"Denver,
+        Co","links":{"self":"https://api.unsplash.com/users/nima_sarram","html":"https://unsplash.com/@nima_sarram","photos":"https://api.unsplash.com/users/nima_sarram/photos","likes":"https://api.unsplash.com/users/nima_sarram/likes","portfolio":"https://api.unsplash.com/users/nima_sarram/portfolio","following":"https://api.unsplash.com/users/nima_sarram/following","followers":"https://api.unsplash.com/users/nima_sarram/followers"},"profile_image":{"small":"https://images.unsplash.com/profile-1601953490826-6eeca3f02875image?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=32\u0026w=32","medium":"https://images.unsplash.com/profile-1601953490826-6eeca3f02875image?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=64\u0026w=64","large":"https://images.unsplash.com/profile-1601953490826-6eeca3f02875image?ixlib=rb-1.2.1\u0026q=80\u0026fm=jpg\u0026crop=faces\u0026cs=tinysrgb\u0026fit=crop\u0026h=128\u0026w=128"},"instagram_username":"sarramphotography","total_collections":15,"total_likes":21,"total_photos":198,"accepted_tos":true},"exif":{"make":"NIKON
+        CORPORATION","model":"NIKON D7500","exposure_time":"1/2500","aperture":"1.4","focal_length":"50.0","iso":50},"location":{"title":"Denver,
+        CO, USA","name":"Denver, CO, USA","city":"Denver","country":"United States","position":{"latitude":39.739236,"longitude":-104.990251}},"views":1697,"downloads":85}'
+  recorded_at: Tue, 19 Jan 2021 22:44:12 GMT
 recorded_with: VCR 6.0.0

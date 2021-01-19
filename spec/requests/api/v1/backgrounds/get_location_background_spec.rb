@@ -27,12 +27,13 @@ describe 'Backgrounds request' do
 
       expect(image[:location]).to be_a String
       expect(image[:image_url]).to be_a String
+      expect(image[:alt_description]).to be_a String
 
       credit = image[:credit]
 
       expect(credit[:source]).to be_a String
       expect(credit[:author]).to be_a String
-      expect(credit[:logo]).to be_a String
+      expect(credit[:author_page]).to be_a String
     end
   end
 end
