@@ -21,6 +21,7 @@ gem 'rack-cors'
 
 gem 'faraday'
 gem 'figaro'
+gem 'fast_jsonapi'
 
 group :development, :test do
   gem 'pry'
