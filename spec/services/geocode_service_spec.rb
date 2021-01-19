@@ -67,7 +67,29 @@ describe 'GeocodeService' do
       end_point = 'pueblo,co'
       trip = GeocodeService.trip_data(start_point, end_point)
 
-      
+      expect(trip).to have_key :route
+      expect(trip[:route]).to be_a Hash
+
+      route = trip[:route]
+
+      expect(route).to have_key :formattedTime
+      expect(route[:formattedTime]).to be_a String
+      expect(route).to have_key :locations
+      expect(route[:locations]).to be_an Array
+      expect(route[:locations].last).to be_a Hash
+      expect(route[:locations].last).to have_key :adminArea5
+      expect(route[:locations].last[:adminArea5]).to be_a String
+      expect(route[:locations].last).to have_key :adminArea3
+      expect(route[:locations].last[:adminArea3]).to be_a String
+      expect(route[:locations].last).to have_key :displayLatLng
+      expect(route[:locations].last[:displayLatLng]).to be_a Hash
+
+      lat_lng = route[:locations].last[:displayLatLng]
+
+      expect(lat_lng).to have_key :lat
+      expect(lat_lng[:lat]).to be_a Float
+      expect(lat_lng).to have_key :lng
+      expect(lat_lng[:lng]).to be_a Float
     end
   end
 end
