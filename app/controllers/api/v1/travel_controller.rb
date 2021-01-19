@@ -1,21 +1,6 @@
 class Api::V1::TravelController < ApplicationController
   def munchies
-    conn = Faraday.new(
-      url: 'https://www.mapquestapi.com/directions/v2',
-      params: {
-        key: ENV['GEOCODE_API_KEY']
-      },
-      headers: {
-        'Content-Type' => 'application/json',
-        'Accept' => 'application/json'
-      }
-    )
-    response = conn.get('route') do |req|
-      req.params[:from] = params[:start]
-      req.params[:to] = params[:end]
-    end
-
-    trip_data = JSON.parse(response.body, symbolize_names: true)[:route]
+    trip_data = GeocodeService.trip_data(params[:start], params[:end])[:route]
     raw_time = trip_data[:formattedTime].split(':')
     trip_time = "#{raw_time[0].to_i} hours #{raw_time[1]} min"
     destination_hash = trip_data[:locations].last
