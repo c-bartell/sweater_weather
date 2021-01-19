@@ -17,6 +17,7 @@ describe 'Forecast' do
   end
 
   it 'has attributes' do
+    expect(@forecast.id).to be nil
     expect(@forecast.current_weather).to be_a Hash
     expect(@forecast.daily_weather).to be_an Array
     expect(@forecast.daily_weather.length).to eq(5)
