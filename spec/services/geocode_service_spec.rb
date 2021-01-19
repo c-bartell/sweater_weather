@@ -60,9 +60,10 @@ describe 'GeocodeService' do
       expect(geocoords[:lng]).to be_a Float
       expect(geocoords[:lng]).to eq(-104.984853)
     end
+  end
 
-    it 'can get trip data' do
-      VCR.use_cassette('denver_to_pueblo_travel_request')
+  it 'can get trip data' do
+    VCR.use_cassette('denver_to_pueblo_travel_request') do
       start_point = 'denver,co'
       end_point = 'pueblo,co'
       trip = GeocodeService.trip_data(start_point, end_point)
