@@ -1,7 +1,11 @@
 class Api::V1::SessionsController < ApplicationController
   def create
-    if user.authenticate(params[:password])
+    if user && user.authenticate(params[:password])
+
       render json: UserSerializer.new(user)
+    else
+
+      render json: { errors: ['Invalid credentials'] }, status: :bad_request
     end
   end
 
