@@ -64,4 +64,32 @@ describe 'User POST request' do
     expect(error[:errors]).to be_an Array
     expect(error[:errors][0]).to eq 'Password confirmation doesn\'t match Password'
   end
+
+  it 'returns an error response when the email is already taken' do
+    email = 'elfo@dreamland.com'
+    password = 'i_heart_bean'
+    headers = {
+      'Content-Type' => 'application/json',
+      'Accept' => 'application/json'
+    }
+
+    User.create!(
+      email: email,
+      password: 'password',
+      password_confirmation: 'password'
+    )
+
+    post api_v1_users_path(
+      email: email, password: password, password_confirmation: password
+    ), headers: headers
+
+    expect(response).to have_http_status 422
+
+    error = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error).to be_a Hash
+    expect(error).to have_key :errors
+    expect(error[:errors]).to be_an Array
+    expect(error[:errors][0]).to eq 'Email has already been taken'
+  end
 end
