@@ -5,7 +5,7 @@ class Api::V1::RoadTripController < ApplicationController
       render json: RoadTripSerializer.new(road_trip)
     else
 
-      render json: { errors: ['Invalid API key'] }, status: 401
+      render json: { errors: ['Invalid API key'] }, status: :unauthorized
     end
   end
 
