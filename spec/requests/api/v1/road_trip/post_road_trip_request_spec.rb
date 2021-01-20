@@ -57,4 +57,47 @@ describe 'Road Trip POST request' do
       end
     end
   end
+
+  it 'it returns an error if an invalid api_key is used' do
+    VCR.use_cassette('denver_to_pueblo_roadtrip_request') do
+      VCR.use_cassette('puebloco_weather_request') do
+        start_point = 'Denver,Co'
+        end_point = 'Pueblo,Co'
+        headers = {
+          'Content-Type' => 'application/json',
+          'Accept' => 'application/json'
+        }
+
+        post(
+          api_v1_road_trip_path(
+            origin: start_point, end_point: end_point, api_key: 'password'
+          ),
+          headers: headers
+        )
+
+        expect(response).to have_http_status 401
+
+        error = JSON.parse(response.body, symbolize_names: true)
+
+        expect(error).to be_a Hash
+        expect(error).to have_key :errors
+        expect(error[:errors]).to be_an Array
+        expect(error[:errors][0]).to eq 'Invalid API key'
+
+        post(
+          api_v1_road_trip_path(origin: start_point, end_point: end_point),
+          headers: headers
+        )
+
+        expect(response).to have_http_status 401
+
+        error = JSON.parse(response.body, symbolize_names: true)
+
+        expect(error).to be_a Hash
+        expect(error).to have_key :errors
+        expect(error[:errors]).to be_an Array
+        expect(error[:errors][0]).to eq 'Invalid API key'
+      end
+    end
+  end
 end
