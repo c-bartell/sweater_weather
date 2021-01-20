@@ -1,22 +1,5 @@
 class Api::V1::ImagesController < ApplicationController
   def background
-    conn = Faraday.new(
-      url: 'https://api.unsplash.com',
-      headers: {
-        'Content-Type' => 'application/json',
-        'Accept' => 'application/json',
-        'Accept-Version' => 'v1',
-        'Authorization' => "Client-ID #{ENV['UNSPLASH_KEY']}"
-      }
-    )
-
-    response = conn.get('photos/random') do |req|
-      req.params[:content_filter] = 'high'
-      req.params[:query] = params[:location]
-    end
-
-    background_data = JSON.parse(response.body, symbolize_names: true)
-
     payload = {
       data: {
         id: nil,
@@ -35,7 +18,13 @@ class Api::V1::ImagesController < ApplicationController
         }
       }
     }
-    # binding.pry
+
     render json: payload
+  end
+
+  private
+
+  def background_data
+    @background_data ||= ImageService.background(params[:location])
   end
 end
