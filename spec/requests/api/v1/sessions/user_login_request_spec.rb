@@ -39,4 +39,40 @@ describe 'Sessions POST request' do
     expect(attributes).to have_key :api_key
     expect(attributes[:api_key]).to eq user.api_key
   end
+
+  it 'returns an error for invalid credentials' do
+    email = 'elfo@dreamland.com'
+    password = 'i_heart_bean'
+    headers = {
+      'Content-Type' => 'application/json',
+      'Accept' => 'application/json'
+    }
+    User.create!(
+      email: email,
+      password: password,
+      password_confirmation: password
+    )
+
+    post api_v1_sessions_path(email: email, password: 'password'), headers: headers
+
+    expect(response).to have_http_status 400
+
+    error = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error).to be_a Hash
+    expect(error).to have_key :errors
+    expect(error[:errors]).to be_an Array
+    expect(error[:errors][0]).to eq 'Invalid credentials'
+
+    post api_v1_sessions_path(email: 'lucy@dreamland.com', password: password), headers: headers
+
+    expect(response).to have_http_status 400
+
+    error = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error).to be_a Hash
+    expect(error).to have_key :errors
+    expect(error[:errors]).to be_an Array
+    expect(error[:errors][0]).to eq 'Invalid credentials'
+  end
 end
