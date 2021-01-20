@@ -6,8 +6,6 @@ class Api::V1::ImagesController < ApplicationController
   private
 
   def image
-    @image ||= Image.new(
-      ImageService.background(params[:location])
-    )
+    @image ||= ImageFacade.background(params[:location])
   end
 end
