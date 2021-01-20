@@ -3,10 +3,10 @@ class Api::V1::UsersController < ApplicationController
     @user = User.new(user_params)
     if @user.save
 
-      render json: UserSerializer.new(@user), status: 201
+      render json: UserSerializer.new(@user), status: :created
     else
 
-      render json: { errors: @user.errors.full_messages }, status: 422
+      render json: { errors: user_errors }, status: :unprocessable_entity
     end
   end
 
@@ -14,5 +14,9 @@ class Api::V1::UsersController < ApplicationController
 
   def user_params
     params.permit(:email, :password, :password_confirmation)
+  end
+
+  def user_errors
+    @user.errors.full_messages
   end
 end
