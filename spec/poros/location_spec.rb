@@ -18,4 +18,15 @@ describe 'Location PORO' do
     expect(location.latitude).to eq(lat_lng[:lat])
     expect(location.longitude).to eq(lat_lng[:lng])
   end
+
+  it 'can instantiate from a latLng hash' do
+    lat_lng = {
+      lat: 5,
+      lng: 6
+    }
+    location = Location.new(lat_lng)
+    expect(location).to be_a Location
+    expect(location.latitude).to eq 5
+    expect(location.longitude).to eq 6
+  end
 end
