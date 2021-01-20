@@ -1,7 +1,7 @@
 class GeocodeService
   class << self
     def location_to_coords(location)
-      response = conn.post('address') do |req|
+      response = conn.post('geocoding/v1/address') do |req|
         req.body = {
           location: location,
           options: options
@@ -11,11 +11,20 @@ class GeocodeService
       JSON.parse(response.body, symbolize_names: true)
     end
 
+    def road_trip_data(start_point, end_point)
+      response = conn.get('directions/v2/route') do |req|
+          req.params[:from] = start_point
+          req.params[:to] = end_point
+      end
+
+      JSON.parse(response.body, symbolize_names: true)
+    end
+
     private
 
     def conn
       Faraday.new(
-        url: 'https://www.mapquestapi.com/geocoding/v1',
+        url: 'https://www.mapquestapi.com',
         params: {
           key: ENV['GEOCODE_API_KEY']
         },
