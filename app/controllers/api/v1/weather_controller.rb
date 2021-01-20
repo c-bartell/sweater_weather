@@ -1,10 +1,15 @@
 class Api::V1::WeatherController < ApplicationController
   def forecast
-    location = GeocodeFacade.location(params[:location])
-    forecast = Forecast.new(
-      WeatherService.weather_at_coords(location)
-    )
+    render json: ForecastSerializer.new(forecast_obj)
+  end
 
-    render json: ForecastSerializer.new(forecast)
+  private
+
+  def location
+    @location ||= GeocodeFacade.location(params[:location])
+  end
+
+  def forecast_obj
+    @forecast_obj ||= WeatherFacade.forecast(location)
   end
 end
