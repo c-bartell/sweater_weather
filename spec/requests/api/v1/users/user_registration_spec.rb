@@ -43,7 +43,7 @@ describe 'User POST request' do
     expect(attributes).to_not have_key :password
   end
 
-  xit 'returns an error response when the passwords do not match' do
+  it 'returns an error response when the passwords do not match' do
     email = 'elfo@dreamland.com'
     password = 'i_heart_bean'
     headers = {
@@ -55,5 +55,13 @@ describe 'User POST request' do
       email: email, password: password, password_confirmation: 'password'
     ), headers: headers
 
+    expect(response).to have_http_status 422
+
+    error = JSON.parse(response.body, symbolize_names: true)
+
+    expect(error).to be_a Hash
+    expect(error).to have_key :errors
+    expect(error[:errors]).to be_an Array
+    expect(error[:errors][0]).to eq 'Password confirmation doesn\'t match Password'
   end
 end
