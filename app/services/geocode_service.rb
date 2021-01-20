@@ -13,8 +13,8 @@ class GeocodeService
 
     def road_trip_data(start_point, end_point)
       response = conn.get('directions/v2/route') do |req|
-          req.params[:from] = start_point
-          req.params[:to] = end_point
+        req.params[:from] = start_point
+        req.params[:to] = end_point
       end
 
       JSON.parse(response.body, symbolize_names: true)

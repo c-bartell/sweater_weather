@@ -1,22 +1,6 @@
 class Api::V1::RoadTripController < ApplicationController
   def create
-    conn = Faraday.new(
-      url: 'https://www.mapquestapi.com',
-      params: {
-        key: ENV['GEOCODE_API_KEY']
-      },
-      headers: {
-        'Content-Type' => 'application/json',
-        'Accept' => 'application/json'
-      }
-    )
-
-    response = conn.get('directions/v2/route') do |req|
-        req.params[:from] = params[:origin]
-        req.params[:to] = params[:end_point]
-    end
-
-    road_trip_data = JSON.parse(response.body, symbolize_names: true)[:route]
+    road_trip_data = GeocodeService.road_trip_data(params[:origin], params[:end_point])[:route]
 
     raw_time = road_trip_data[:formattedTime].split(':')
     trip_time = "#{raw_time[0].to_i} hours #{raw_time[1]} min"
