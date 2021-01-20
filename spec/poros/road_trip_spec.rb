@@ -17,5 +17,12 @@ describe 'Road Trip PORO' do
     expect(road_trip.start_city).to eq 'Denver, CO'
     expect(road_trip.end_city).to eq 'Pueblo, CO'
     expect(road_trip.travel_time).to eq '1 hours 44 min'
+    expect(road_trip.lat_lng).to eq(
+      { lat: 38.265427, lng: -104.610413 }
+    )
+  end
+
+  it 'can add weather info' do
+
   end
 end
