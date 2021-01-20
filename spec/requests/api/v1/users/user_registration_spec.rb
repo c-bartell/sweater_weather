@@ -9,7 +9,9 @@ describe 'User POST request' do
       'Accept' => 'application/json'
     }
 
-    post api_v1_users_path(email: email, password: password, password_confirmation: password)
+    post api_v1_users_path(
+      email: email, password: password, password_confirmation: password
+    ), headers: headers
 
     user = User.last
     expect(user.email).to eq email
@@ -41,5 +43,17 @@ describe 'User POST request' do
     expect(attributes).to_not have_key :password
   end
 
-  # sad path with 400 codes goes here
+  xit 'returns an error response when the passwords do not match' do
+    email = 'elfo@dreamland.com'
+    password = 'i_heart_bean'
+    headers = {
+      'Content-Type' => 'application/json',
+      'Accept' => 'application/json'
+    }
+
+    post api_v1_users_path(
+      email: email, password: password, password_confirmation: 'password'
+    ), headers: headers
+
+  end
 end
