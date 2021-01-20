@@ -42,8 +42,8 @@ class Forecast
       {
         time: Time.at(hour[:dt]).getlocal.strftime('%H:%M:%S'),
         temperature: hour[:temp],
-        wind_speed: (hour[:wind_speed].to_s + ' mph'),
-        wind_direction: ('from ' + cardinal_direction(hour[:wind_deg])),
+        wind_speed: "#{hour[:wind_speed]} mph",
+        wind_direction: "from #{cardinal_direction(hour[:wind_deg])}",
         conditions: hour[:weather][0][:description],
         icon: hour[:weather][0][:icon]
       }
