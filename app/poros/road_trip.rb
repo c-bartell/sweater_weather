@@ -1,13 +1,15 @@
 class RoadTrip
   attr_reader :start_city,
               :end_city,
-              :lat_lng
+              :lat_lng,
+              :weather_at_eta
 
   def initialize(data)
     @start_city = city_string(data[:route][:locations].first)
     @end_city = city_string(data[:route][:locations].last)
     @travel_time = data[:route][:formattedTime]
     @lat_lng = data[:route][:locations].last[:displayLatLng]
+    @weather_at_eta = nil
   end
 
   def id; end
@@ -23,5 +25,9 @@ class RoadTrip
     else
       'Impossible route'
     end
+  end
+
+  def add_weather(data)
+    @weather_at_eta = data
   end
 end
