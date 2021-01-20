@@ -28,7 +28,7 @@ describe 'User POST request' do
     expect(user_data).to have_key :type
     expect(user_data[:type]).to eq 'users'
     expect(user_data).to have_key :id
-    expect(user_data[:id]).to eq user.id
+    expect(user_data[:id]).to eq user.id.to_s
     expect(user_data).to have_key :attributes
     expect(user_data[:attributes]).to be_a Hash
 
