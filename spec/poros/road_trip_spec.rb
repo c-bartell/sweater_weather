@@ -23,6 +23,11 @@ describe 'Road Trip PORO' do
   end
 
   it 'can add weather info' do
-
+    road_trip = RoadTrip.new(@trip_data)
+    expect(road_trip.weather_at_eta).to be nil
+    road_trip.add_weather({ temperature: '', conditions: '' })
+    expect(road_trip.weather_at_eta).to eq(
+      { temperature: '', conditions: '' }
+    )
   end
 end
