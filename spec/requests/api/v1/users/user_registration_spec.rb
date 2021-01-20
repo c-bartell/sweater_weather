@@ -18,7 +18,7 @@ describe 'User POST request' do
 
     expect(response).to have_http_status 201
 
-    parsed_data = JSON.parse(respons.body, symbolize_names: true)
+    parsed_data = JSON.parse(response.body, symbolize_names: true)
 
     expect(parsed_data).to have_key :data
     expect(parsed_data[:data]).to be_a Hash
