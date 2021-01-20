@@ -13,7 +13,6 @@ describe 'User POST request' do
 
     user = User.last
     expect(user.email).to eq email
-    expect(user.password).to be_a String
     expect(user.api_key).to_not be_empty
     expect(user.api_key).to be_a String
 
