@@ -7,6 +7,7 @@ RSpec.describe User, type: :model do
     it { should validate_presence_of :password }
     # The default arg for have_secure_password is :password
     it { should have_secure_password }
+    it { should have_secure_token :api_key }
 
   end
 end
