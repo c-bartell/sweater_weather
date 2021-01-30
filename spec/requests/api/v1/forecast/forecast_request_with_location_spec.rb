@@ -51,7 +51,7 @@ describe 'Forecast Request' do
 
         expect(daily_weather.length).to eq 5
 
-        expect(Time.parse(hourly_weather[0][:time])).to eq Time.parse('10:00:00')
+        expect(hourly_weather[0][:time]).to be_a String 
         expect(hourly_weather[0][:temperature]).to eq 34.16
         expect(hourly_weather[0][:wind_speed]).to eq '4.81 mph'
         expect(hourly_weather[0][:wind_direction]).to eq 'from SE'
