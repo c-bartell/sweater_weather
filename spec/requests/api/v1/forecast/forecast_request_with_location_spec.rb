@@ -25,9 +25,9 @@ describe 'Forecast Request' do
 
         current_weather = data[:attributes][:current_weather]
 
-        expect(current_weather[:datetime]).to eq '2021-01-18 09:31:02 -0700'
-        expect(current_weather[:sunrise]).to eq '2021-01-18 07:17:38 -0700'
-        expect(current_weather[:sunset]).to eq '2021-01-18 17:02:55 -0700'
+        expect(Time.parse(current_weather[:datetime])).to eq Time.parse('2021-01-18 09:31:02 -0700')
+        expect(Time.parse(current_weather[:sunrise])).to eq Time.parse('2021-01-18 07:17:38 -0700')
+        expect(Time.parse(current_weather[:sunset])).to eq Time.parse('2021-01-18 17:02:55 -0700')
         expect(current_weather[:temperature]).to eq 33.67
         expect(current_weather[:feels_like]).to eq 27.57
         expect(current_weather[:humidity]).to eq 57
@@ -40,8 +40,8 @@ describe 'Forecast Request' do
 
         expect(daily_weather.length).to eq 5
         expect(daily_weather[0][:date]).to eq '2021-01-19'
-        expect(daily_weather[0][:sunrise]).to eq '2021-01-19 07:17:07 -0700'
-        expect(daily_weather[0][:sunset]).to eq '2021-01-19 17:04:03 -0700'
+        expect(Time.parse(daily_weather[0][:sunrise])).to eq Time.parse('2021-01-19 07:17:07 -0700')
+        expect(Time.parse(daily_weather[0][:sunset])).to eq Time.parse('2021-01-19 17:04:03 -0700')
         expect(daily_weather[0][:max_temp]).to eq 36.46
         expect(daily_weather[0][:min_temp]).to eq 28.2
         expect(daily_weather[0][:conditions]).to eq 'overcast clouds'
@@ -51,7 +51,7 @@ describe 'Forecast Request' do
 
         expect(daily_weather.length).to eq 5
 
-        expect(hourly_weather[0][:time]).to eq '10:00:00'
+        expect(hourly_weather[0][:time]).to be_a String 
         expect(hourly_weather[0][:temperature]).to eq 34.16
         expect(hourly_weather[0][:wind_speed]).to eq '4.81 mph'
         expect(hourly_weather[0][:wind_direction]).to eq 'from SE'
