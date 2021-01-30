@@ -3,6 +3,11 @@ rvm:
 - 2.5.3
 before_install:
 - gem install bundler
+addons:
+  postgresql: 13
+script:
+- bundle exec rails db:{create,migrate} RAILS_ENV=test
+- bundle exec rspec
 deploy:
   provider: heroku
   api_key:
