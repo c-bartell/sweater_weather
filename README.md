@@ -1,5 +1,5 @@
 # Sweater Weather AKA Whether Sweater?
-[![Build Status](https://travis-ci.com/travis-ci/travis-web.svg?branch=master)](https://travis-ci.com/github/Carbon-Knight/carbon-knight-back-end)
+[![Build Status](https://travis-ci.com/travis-ci/travis-web.svg?branch=master)](https://travis-ci.com/github/c-bartell/sweater_weather)
 ---
 Sweater weather is a service oriented API meant to be the back end for a road trip planning app. Endpoints are available to get weather data and pictures for a location, register and login users, and fetch weather data for the time of arrival at trip destinations.
 
